@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TFighter</string>
+    <string name="yourScore">Your Score:%1$d</string>
+    <string name="timeLeft">Time Left:%1$d</string>
+    <string name="hitMe">Hit Me!</string>
+    <string name="gameOverMessage">Times up! Your score was: %1$d</string>
+    <string name="aboutTitle">Time Fighter</string>
+    <string name="aboutMessage">Created by ZanyZephyr👻</string>
+</resources>
