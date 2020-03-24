@@ -65,9 +65,7 @@ struct ContentView: View {
           }
         }
         
-        Rectangle()
-          .frame(height: 1.0 / UIScreen.main.scale)
-          .foregroundColor(Color(white: 0.698))
+        
         
         TabBarView(
           selectedItem: self.$selectedItem,
@@ -85,8 +83,8 @@ struct ContentView: View {
               selectedItem: self.$selectedItem,
               smartView: .settings, icon: "gear")
         ])
-          .padding(.bottom, geometry.safeAreaInsets.bottom)
-          .background(Color(white: 0.96875))
+          .padding(.bottom, geometry.safeAreaInsets.bottom / 2)
+          .background(Color.lairBackgroundGray)
       }
       .edgesIgnoringSafeArea(.bottom)
     }
