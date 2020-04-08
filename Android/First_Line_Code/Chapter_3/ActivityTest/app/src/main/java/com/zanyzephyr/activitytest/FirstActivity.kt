@@ -13,15 +13,24 @@ import android.widget.Toast.LENGTH_LONG
 import android.widget.Toast.makeText
 import kotlinx.android.synthetic.main.first_layout.*
 
-class FirstActivity : AppCompatActivity() {
+class FirstActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.first_layout)
+        Log.d("FirstActivity", "Task is is $taskId")
         button1.setOnClickListener {
-            val intent = Intent(this, SecondActivity::class.java)
-            startActivityForResult(intent, 2020)
+//            val intent = Intent(this, SecondActivity::class.java)
+//            startActivityForResult(intent, 2020)
+//            val intent = Intent(this, SecondActivity::class.java)
+//            startActivity(intent)
+            SecondActivity.actionStart(this,"ZanyZephyr", 30)
         }
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("FirstActivity", "onRestart()")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

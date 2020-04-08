@@ -1,21 +1,22 @@
 package com.zanyzephyr.activitytest
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import kotlinx.android.synthetic.main.activity_second.*
 
-class SecondActivity : AppCompatActivity() {
-    var backCount: Int = 0
+class SecondActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
-        val extraData: String? = intent.getStringExtra("extra_data")
-        Log.d("SecondActivity", extraData ?: "nil")
-
-        backCount = 0 // 初始化为0
+        Log.d("SecondActivity", "Task is is $taskId")
+        button2.setOnClickListener {
+            startActivity(Intent(this, ThirdActivity::class.java))
+        }
     }
 
     override fun onBackPressed() {
@@ -23,5 +24,14 @@ class SecondActivity : AppCompatActivity() {
         intent.putExtra("data_return", "Hello, FirstActivity!")
         setResult(Activity.RESULT_OK, intent)
         finish()
+    }
+    companion object {
+        fun actionStart(context: Context, name: String, age: Int) {
+            val intent = Intent(context, SecondActivity::class.java).apply {
+                putExtra("name", name)
+                putExtra("age", age)
+            }
+            context.startActivity(intent)
+        }
     }
 }
