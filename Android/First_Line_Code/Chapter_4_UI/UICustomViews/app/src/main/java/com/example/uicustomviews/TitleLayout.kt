@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.title.view.*
+import java.security.KeyStore
+import java.util.zip.Inflater
 
 class TitleLayout(context: Context, attrs: AttributeSet): LinearLayout(context, attrs) {
     init {
