@@ -3,6 +3,7 @@ package com.zanyzephyr.listviewtest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +23,11 @@ class MainActivity : AppCompatActivity() {
         initFruits()
         val adapter = FruitAdapter(this, R.layout.fruit_item, fruitList)
         listView.adapter = adapter
+        listView.setOnItemClickListener { _, _, position, _ ->
+            val fruit = fruitList[position]
+            Toast.makeText(this, fruit.name, Toast.LENGTH_LONG).show()
+        }
+
     }
 
     private fun initFruits() {
