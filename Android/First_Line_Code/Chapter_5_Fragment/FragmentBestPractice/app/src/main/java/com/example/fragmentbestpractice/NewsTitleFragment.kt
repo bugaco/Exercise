@@ -47,15 +47,8 @@ class NewsTitleFragment : Fragment() {
         return newsList
     }
 
-
     private fun getRandomLengthContentString(str: String): String {
-        val n = (2..20).random()
-        val builder = StringBuilder().apply {
-            repeat(n) {
-                append(str)
-            }
-        }
-        return builder.toString()
+        return str * (1..20).random()
     }
 
     inner class NewsAdapter(val newsList: List<News>) :
