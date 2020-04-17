@@ -10,7 +10,7 @@
         android:id="@+id/updateButton"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:text="Update Data"
         app:layout_constraintEnd_toEndOf="@+id/createDatabaseButton"
         app:layout_constraintStart_toStartOf="@+id/createDatabaseButton"
@@ -31,7 +31,7 @@
         android:id="@+id/addDataButton"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:text="Add Data"
         app:layout_constraintEnd_toEndOf="@+id/createDatabaseButton"
         app:layout_constraintHorizontal_bias="0.492"
@@ -42,7 +42,7 @@
         android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:text="Delete Data"
         app:layout_constraintEnd_toEndOf="@+id/createDatabaseButton"
         app:layout_constraintStart_toStartOf="@+id/createDatabaseButton"
@@ -52,9 +52,19 @@
         android:id="@+id/queryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:text="Query Data"
         app:layout_constraintEnd_toEndOf="@+id/deleteButton"
         app:layout_constraintStart_toStartOf="@+id/deleteButton"
         app:layout_constraintTop_toBottomOf="@+id/deleteButton" />
+
+    <Button
+        android:id="@+id/replaceDataButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Replace Data Button"
+        app:layout_constraintEnd_toEndOf="@+id/createDatabaseButton"
+        app:layout_constraintStart_toStartOf="@+id/createDatabaseButton"
+        app:layout_constraintTop_toBottomOf="@+id/queryButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
