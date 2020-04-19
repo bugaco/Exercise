@@ -21,6 +21,12 @@ class MainActivity : AppCompatActivity() {
             editor.putInt("age", 30)
             editor.putBoolean("married", true)
             editor.apply()
+
+            getSharedPreferences("data", Context.MODE_PRIVATE).edit {
+                putString("name", "李懿哲")
+                putInt("age", 30)
+                putBoolean("married", true)
+            }
         }
 
         restoreButton.setOnClickListener {
