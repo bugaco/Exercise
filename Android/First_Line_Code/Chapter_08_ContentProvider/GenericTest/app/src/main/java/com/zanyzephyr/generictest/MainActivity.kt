@@ -1,5 +1,7 @@
 package com.zanyzephyr.generictest
 
+import android.app.NotificationManager
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,5 +19,10 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener {
             println("str: $str")
         }
+
+
     }
+
+    val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
 }
