@@ -13,6 +13,6 @@ fun main() {
     println(flag2) // true
 
     val foo = mapOf("a" to "b", "1" to "2")
-
+    // test 4
 }
 public infix fun <A, B> A.to(that: B): Pair<A, B> = Pair(this, that)
