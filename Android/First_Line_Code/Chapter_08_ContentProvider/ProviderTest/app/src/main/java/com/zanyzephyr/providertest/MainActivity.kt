@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("MainActivity", "book added, book id: $bookId")
         }
         queryData.setOnClickListener {
-            contentResolver.query(Uri.parse(uriString), null, null, null, null)?.apply {
+            contentResolver.query(Uri.parse(uriString), null, null, null, null)?.build {
                 Log.d("MainActivity", "query result: ${this.count}")
                 while (moveToNext()) {
                     val name = getString(getColumnIndex("name"))
