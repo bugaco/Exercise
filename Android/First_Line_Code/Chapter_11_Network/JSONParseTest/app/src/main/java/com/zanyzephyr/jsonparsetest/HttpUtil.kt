@@ -1,8 +1,11 @@
 package com.zanyzephyr.jsonparsetest
 
-import okhttp3.EventListener
-import okhttp3.HttpUrl
+import okhttp3.Call
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
 import java.io.BufferedReader
+import java.io.IOException
 import java.io.InputStreamReader
 import java.lang.Exception
 import java.lang.StringBuilder
@@ -41,6 +44,14 @@ object HttpUtil {
             }
         }
     }
+
+    fun sendOkHttpRequest(address: String, callback: okhttp3.Callback) {
+        val client = OkHttpClient()
+        val request = Request.Builder()
+            .url(address)
+            .build()
+        client.newCall(request).enqueue(callback)
+    }
 }
 
 fun main() {
@@ -54,4 +65,15 @@ fun main() {
 
         }
     })
+
+    HttpUtil.sendOkHttpRequest(address, object : okhttp3.Callback {
+        override fun onFailure(call: Call, e: IOException) {
+
+        }
+
+        override fun onResponse(call: Call, response: Response) {
+            TODO("Not yet implemented")
+        }
+    })
 }
+
