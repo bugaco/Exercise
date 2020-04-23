@@ -114,6 +114,8 @@ class MainActivity : AppCompatActivity() {
 
 ### 12.3.1 DrawerLayout
 
+#### 1⃣️
+
 修改main activity的布局文件：
 
 ```xml
@@ -152,3 +154,31 @@ class MainActivity : AppCompatActivity() {
 这样就可以了，安卓的这个布局真是强大
 
 ⚠️`android:layout_gravity = "start"`这个属性这是很重要
+
+#### 2⃣️添加按钮，点击后打开抽屉
+
+```kotlin
+override fun onCreate(savedInstanceState: Bundle?) {
+    ...
+    supportActionBar?.let {
+        it.setDisplayHomeAsUpEnabled(true) // 设置显示home按钮
+        it.setHomeAsUpIndicator(R.drawable.ic_menu) // 自定义icon
+    }
+}
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        var msg = ""
+        when (item.itemId) {
+            ...
+            android.R.id.home -> {
+                drawerLayout.openDrawer(GravityCompat.START, true) // 监听事件，打开抽屉
+            }
+            else -> "null"
+        }
+        return true
+    }
+```
+
+### 12.3.2 NavigationView
+
