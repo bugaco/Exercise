@@ -652,7 +652,7 @@ class FruitActivity : AppCompatActivity() {
                 android:id="@+id/fruitImageView"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax" />
-            <Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
