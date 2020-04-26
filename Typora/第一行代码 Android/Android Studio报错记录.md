@@ -10,3 +10,16 @@ I solved it changing the gradle version of the project to the newest version 6.2
 
 引用自:https://github.com/android/plaid/issues/818#issuecomment-593824196
 
+## ② 下拉刷新的组件 SwipeRefreshLayout  找不到
+
+在xml中写布局的时候，没有提示，直接写上去也没报错，但运行的时候报错：
+
+```
+java.lang.ClassNotFoundException: androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+```
+
+Material 库也在app/build.gradle中引入了，后来在so上找到了一种方式试了一下解决了：
+
+直接引入`implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'`库
+
+参考自：https://stackoverflow.com/a/57743939

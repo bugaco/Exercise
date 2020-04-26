@@ -6,9 +6,27 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
+
+    val fruits = mutableListOf<Fruit>(
+        Fruit("Apple", R.drawable.apple),
+        Fruit("Banana", R.drawable.banana),
+        Fruit("Watermelon", R.drawable.watermelon),
+        Fruit("Grape", R.drawable.grape),
+        Fruit("Strawberry", R.drawable.strawberry),
+        Fruit("Mango", R.drawable.mango),
+        Fruit("Orange", R.drawable.orange),
+        Fruit("Pear", R.drawable.pear),
+        Fruit("Pineapple", R.drawable.pineapple),
+        Fruit("Cherry", R.drawable.cherry)
+    )
+    val fruitList = ArrayList<Fruit>()
+    lateinit var adapter: FruitAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +35,51 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setHomeAsUpIndicator(R.drawable.ic_menu)
+        }
+        navView.setCheckedItem(R.id.navFriends)
+        navView.setNavigationItemSelectedListener {
+            drawerLayout.closeDrawers()
+            true
+        }
+
+        fab.setOnClickListener {
+            Snackbar.make(it, "Data deleted", Snackbar.LENGTH_LONG)
+                .setAction("Undo") {
+                    Toast.makeText(this, "Data restored", Toast.LENGTH_LONG).show()
+                }
+                .show()
+        }
+
+        /* 设置RecyclerView */
+        initFruits()
+        val layoutManager = GridLayoutManager(this, 2)
+        recyclerView.layoutManager = layoutManager
+        adapter = FruitAdapter(this, fruitList)
+        recyclerView.adapter = adapter
+
+        /* 设置下拉刷新的回调 */
+        swipeRefresh.setColorSchemeResources(R.color.colorPrimary)
+        swipeRefresh.setOnRefreshListener {
+            refreshFruits()
+        }
+    }
+
+    fun refreshFruits() {
+        thread {
+            Thread.sleep(2000)
+            runOnUiThread {
+                initFruits()
+                adapter.notifyDataSetChanged()
+                swipeRefresh.isRefreshing = false
+            }
+        }
+    }
+
+    private fun initFruits() {
+        fruitList.clear()
+        repeat(50) {
+            val index = (0 until fruits.size).random()
+            fruitList.add(fruits[index])
         }
     }
 
