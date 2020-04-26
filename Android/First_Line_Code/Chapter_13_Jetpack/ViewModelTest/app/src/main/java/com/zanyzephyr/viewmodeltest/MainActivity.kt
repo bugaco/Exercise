@@ -30,6 +30,10 @@ class MainActivity : AppCompatActivity() {
             viewModle.counter ++
             updateTextInfo()
         }
+        clearBtn.setOnClickListener {
+            viewModle.counter = 0
+            updateTextInfo()
+        }
         updateTextInfo()
     }
 

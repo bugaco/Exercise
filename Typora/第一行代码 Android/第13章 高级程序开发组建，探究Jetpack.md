@@ -76,3 +76,73 @@ class MainActivity : AppCompatActivity() {
 
 ### 13.2.2 向ViewModel传递参数
 
+1. 修改`MainViewModel`类：
+
+   ```kotlin
+   class MainViewModel(countReserved: Int = 0): ViewModel() {
+       var counter = countReserved
+   }
+   ```
+
+2. 新建`MainViewModelFactory`类：
+
+   ```kotlin
+   class MainViewModelFactory(val countReserved: Int): ViewModelProvider.Factory {
+       override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+           return MainViewModel(countReserved) as T
+       }
+   }
+   ```
+
+3. 在`MainActivity`中，将count存储在本地，并构建带参数的 ViewModel:
+
+   ```kotlin
+   class MainActivity : AppCompatActivity() {
+   
+       companion object {
+           const val COUNT_RESERVED = "count_reserved"
+       }
+   
+       lateinit var viewModle: MainViewModel
+       lateinit var sp: SharedPreferences
+   
+       override fun onCreate(savedInstanceState: Bundle?) {
+           super.onCreate(savedInstanceState)
+           setContentView(R.layout.activity_main)
+   
+           sp = getPreferences(Context.MODE_PRIVATE)
+           val countReserved = sp.getInt(COUNT_RESERVED, 0)
+           viewModle = ViewModelProviders.of(this,
+               MainViewModelFactory(countReserved)).get(MainViewModel::class.java)
+           plusOneBtn.setOnClickListener {
+               viewModle.counter ++
+               updateTextInfo()
+           }
+           clearBtn.setOnClickListener {
+               viewModle.counter = 0
+               updateTextInfo()
+           }
+           updateTextInfo()
+       }
+   
+       override fun onPause() {
+           super.onPause()
+           sp.edit {
+               putInt(COUNT_RESERVED, viewModle.counter)
+           }
+       }
+   
+       private fun updateTextInfo() {
+           infoText.text = viewModle.counter.toString()
+       }
+   }
+   ```
+
+这样，即使app关闭，再打开count也不会丢失了：
+
+![image-20200426192103761](https://i.loli.net/2020/04/26/H2IoUMbfOT3Yndt.png)
+
+## 13.3 LifeCycle
+
+
+
