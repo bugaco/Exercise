@@ -539,6 +539,312 @@ Google了一下，修改了一下 style 配置文件，添加了两行，暂时�
 
 ## 12.6 下拉刷新
 
+1⃣️在 app/build.gradle 中，如果只引入 material 相关的依赖不行的话，还要直接引入 `implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'`
 
+2⃣️将RecyclerView包裹在SwipeRefreshLayout中：
+
+```xml
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/swipeRefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+```
+
+3⃣️这是刷新回调和刷新数据的方法
+
+```kotlin
+override fun onCreate(savedInstanceState: Bundle?) {
+    ...
+    /* 设置下拉刷新的回调 */
+    swipeRefresh.setOnRefreshListener {
+        refreshFruits()
+    }
+}
+
+fun refreshFruits() {
+    thread {
+        Thread.sleep(2000)
+        runOnUiThread {
+            initFruits()
+            adapter.notifyDataSetChanged()
+            swipeRefresh.isRefreshing = false
+        }
+    }
+}
+...
+```
+
+效果图：
+
+![image-20200426100326116](https://tva1.sinaimg.cn/large/007S8ZIlly1ge6xwbwxswj30as0kpn88.jpg)
 
 ## 12.7 可折叠式标题栏
+
+#### 1⃣️新建FruitActivity：
+
+activity:
+
+```kotlin
+class FruitActivity : AppCompatActivity() {
+    companion object {
+        const val FRUIT_NAME = "fruit_name"
+        const val FRUIT_IMAGE_ID = "fruit_image_id"
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_fruit)
+
+        val fruitName = intent.getStringExtra(FRUIT_NAME) ?: ""
+        val fruitImageId = intent.getIntExtra(FRUIT_IMAGE_ID, 0)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        collapsingToolbar.title = fruitName
+        Glide.with(this).load(fruitImageId).into(fruitImageView)
+        fruitContentText.text = generateFruitContent(fruitName)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun generateFruitContent(fruitName: String) = fruitName.repeat(500)
+}
+```
+
+布局文件：
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:contentScrim="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/fruitImageView"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax" />
+            <Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                android:id="@+id/toolbar"
+                />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="4dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="35dp"
+                >
+                <TextView
+                    android:id="@+id/fruitContentText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    />
+
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_comment"
+        app:layout_anchor="@id/appBar"
+        app:layout_anchorGravity="bottom|end"
+        />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+```
+
+#### 2⃣️在 FruitAdapter 中设置点击跳转的事件
+
+```kotlin
+override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    val view = LayoutInflater.from(context).inflate(R.layout.fruit_item, parent, false)
+    val holder = ViewHolder(view)
+    holder.itemView.setOnClickListener {
+        val fruit = fruitList[holder.adapterPosition]
+        val intent = Intent(context, FruitActivity::class.java).apply {
+            putExtra(FruitActivity.FRUIT_NAME, fruit.name)
+            putExtra(FruitActivity.FRUIT_IMAGE_ID, fruit.imageId)
+        }
+        context.startActivity(intent)
+    }
+    return holder
+}
+```
+
+不知道是不是显卡太差，点击一下水果item，直接 app 直接crash了，日志也没有报错
+
+### 12.7.2 充分利用系统状态栏空间
+
+1⃣️将需要出现在系统状态栏中的控件，`fitsSystemWindows`属性标记为`true`：
+
+```xml
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:fitsSystemWindows="true">
+				...
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+```
+
+2⃣️然后在`style.xml`文件中，新建theme
+
+```xml
+<resources>
+
+    <!-- Base application theme. -->
+    ...
+
+    <style name="FruitActivityTheme"
+        parent="AppTheme1">
+        <item name="android:statusBarColor">
+            @android:color/transparent
+        </item>
+    </style>
+
+</resources>
+```
+
+3⃣️在`Manifest`中修改`FruitActivity`布局的主题：
+
+```xml
+<activity android:name=".FruitActivity"
+    android:theme="@style/FruitActivityTheme">
+    
+</activity>
+```
+
+
+
+## 12.8 Kotlin课堂，编写好用的工具方法
+
+### 12.8.1 求N个数的最大最小值
+
+自己写一个max函数：
+
+```kotlin
+fun <T : Comparable<T>> max(vararg nums: T): T {
+    if (nums.isEmpty()) throw
+        RuntimeException("Params can not be empty.")
+    var maxNum = nums[0]
+    for (num in nums) {
+        if (num > maxNum) {
+            maxNum = num
+        }
+    }
+    return maxNum
+}
+
+fun main() {
+    val a = 3.5
+    val b = 3.8
+    val c = 1.2
+    val max = max(a, b, c)
+    val maxInt = max(1, 2, 3, -11)
+    println("$max, $maxInt") // 3.8, 3
+}
+```
+
+### 12.8.2 简化Toast的用法
+
+封装 String 类：
+
+```kotlin
+fun String.makeToask(context: Context, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(context, this, duration).show()
+}
+```
+
+用的时候就简单一些了：
+
+```kotlin
+fruit.name.makeToask(context)
+fruit.name.makeToask(context, Toast.LENGTH_LONG)
+```
+
+### 12.8.3 简化Snackbar的写法
+
+封装：
+
+```kotlin
+fun View.showSnackbar(
+    text: String,
+    actionString: String?,
+    duration: Int = Snackbar.LENGTH_SHORT,
+    block: (() -> Unit)? = null
+) {
+    val snackbar = Snackbar.make(this, text, duration)
+    if (actionString != null && block != null) {
+        snackbar.setAction(actionString) {
+            block()
+        }
+    }
+    snackbar.show()
+}
+```
+
+使用：
+
+```kotlin
+commentBtn.showSnackbar("已评论", "撤销") {
+    // 撤销动作
+}
+```
+
