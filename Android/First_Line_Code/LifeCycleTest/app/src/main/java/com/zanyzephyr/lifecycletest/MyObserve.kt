@@ -9,7 +9,8 @@ class MyObserve(val lifecycle: Lifecycle): LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun activityStart() {
-        Log.d("MyObserve", "activityStart")
+        Log.d("MyObserve", "activityStart\nlifecycle currentState:${lifecycle.currentState}")
+
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)

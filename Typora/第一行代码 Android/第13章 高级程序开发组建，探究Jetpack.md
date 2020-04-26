@@ -140,9 +140,41 @@ class MainActivity : AppCompatActivity() {
 
 这样，即使app关闭，再打开count也不会丢失了：
 
-![image-20200426192103761](https://i.loli.net/2020/04/26/H2IoUMbfOT3Yndt.png)
+<img src="https://i.loli.net/2020/04/26/H2IoUMbfOT3Yndt.png" alt="image-20200426192103761" style="zoom: 25%;" />
 
 ## 13.3 LifeCycle
+
+1. 新建`MyObserve`类：
+
+   ```kotlin
+   class MyObserve(val lifecycle: Lifecycle): LifecycleObserver {
+   
+       @OnLifecycleEvent(Lifecycle.Event.ON_START)
+       fun activityStart() {
+           Log.d("MyObserve", "activityStart\nlifecycle currentState:${lifecycle.currentState}")
+   
+       }
+   
+       @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+       fun activityStop() {
+           Log.d("MyObserve", "activityStop")
+       }
+   }
+   ```
+
+2. 在 Activity 中建立关联：
+
+   ```kotlin
+   class MainActivity : AppCompatActivity() {
+   
+       override fun onCreate(savedInstanceState: Bundle?) {
+           ...
+           lifecycle.addObserver(MyObserve(lifecycle))
+       }
+   }
+   ```
+
+
 
 
 
