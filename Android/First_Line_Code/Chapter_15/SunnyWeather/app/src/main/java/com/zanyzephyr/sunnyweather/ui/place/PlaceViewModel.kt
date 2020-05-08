@@ -1,9 +1,6 @@
 package com.zanyzephyr.sunnyweather.ui.place
 
-import android.app.DownloadManager
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.zanyzephyr.sunnyweather.logic.Repository
 import com.zanyzephyr.sunnyweather.logic.model.Place
 
@@ -13,8 +10,8 @@ class PlaceViewModel: ViewModel() {
 
     val placeList = ArrayList<Place>()
 
-    val placeLiveData = Transformations.switchMap(searchLiveData) {
-        Repository.searchPlaces(it)
+    val placeLiveData = Transformations.switchMap(searchLiveData) { query ->
+        Repository.searchPlaces(query)
     }
 
     fun searchPlaces(query: String) {
