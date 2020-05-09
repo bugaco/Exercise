@@ -1,5 +1,6 @@
 package com.zanyzephyr.sunnyweather.logic.network
 
+import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,10 +24,13 @@ object SunnyWeatherNetwork {
             enqueue(object : Callback<T> {
                 override fun onResponse(call: Call<T>, response: Response<T>) {
                     val body = response.body()
-                    if (body != null) continuation.resume(body)
-                    else continuation.resumeWithException(
-                        RuntimeException("response body is null")
-                    )
+                    if (body != null) {
+                        Log.d("lyzdebug", "normal response")
+                        continuation.resume(body)
+                    } else {
+                        Log.d("lyzdebug", "exception")
+                        continuation.resumeWithException(RuntimeException("response body is null"))
+                    }
                 }
 
                 override fun onFailure(call: Call<T>, t: Throwable) {
