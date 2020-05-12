@@ -3,6 +3,7 @@ package com.zanyzephyr.sunnyweather.ui.weather
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -25,6 +26,7 @@ class WeatherActivity : AppCompatActivity() {
     val viewModel by lazy {
         ViewModelProviders.of(this).get(WeatherViewModel::class.java)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
@@ -38,24 +40,24 @@ class WeatherActivity : AppCompatActivity() {
         if (viewModel.placeName.isEmpty()) {
             viewModel.placeName = intent.getStringExtra("place_name") ?: ""
         }
-
+        Log.i("WeatherActivity", "${viewModel.locationLng}, ${viewModel.locationLat}, ${viewModel.placeName}")
         viewModel.weatherLiveData.observe(this, Observer {
             val weather = it.getOrNull()
             if (weather != null) {
                 showWeatherInfo(weather)
             } else {
-                Toast.makeText(this, "无法成功获取天气信息", Toast.LENGTH_LONG)
-                    .show()
+                Toast.makeText(this, "无法成功获取天气信息", Toast.LENGTH_LONG).show()
                 it.exceptionOrNull()?.printStackTrace()
             }
         })
+        viewModel.refreshWeather(viewModel.locationLng, viewModel.locationLat)
     }
 
     private fun showWeatherInfo(weather: Weather) {
+        Log.i("WeatherActivity", "showWeatherInfo: ${weather.daily.lifeIndex.carWashing}")
         placeName.text = viewModel.placeName
         val realtime = weather.realtime
         val daily = weather.daily
-
         // 填充now.xml中的数据
         val currentTempText = "${realtime.temperature.toInt()} ℃"
         currentTemp.text = currentTempText
@@ -70,8 +72,10 @@ class WeatherActivity : AppCompatActivity() {
         for (i in 0 until days) {
             val skycon = daily.skycon[i]
             val temperature = daily.temperature[i]
-            val view = LayoutInflater.from(this).inflate(R.layout.forecast_item,
-            forecastLayout, false)
+            val view = LayoutInflater.from(this).inflate(
+                R.layout.forecast_item,
+                forecastLayout, false
+            )
 
             val dateInfo = view.findViewById<TextView>(R.id.dateInfo)
             val skyIcon = view.findViewById<ImageView>(R.id.skyIcon)
@@ -90,7 +94,7 @@ class WeatherActivity : AppCompatActivity() {
 
         // 填充life_index.xml中的数据
         val lifeIndex = daily.lifeIndex
-        coldRiskText.text = lifeIndex.coldRist[0].desc
+        coldRiskText.text = lifeIndex.coldRisk[0].desc
         dressingText.text = lifeIndex.dressing[0].desc
         ultravioletText.text = lifeIndex.ultraviolet[0].desc
         carwashingText.text = lifeIndex.carWashing[0].desc
