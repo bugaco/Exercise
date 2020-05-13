@@ -2,6 +2,7 @@ package com.zanyzephyr.sunnyweather.logic
 
 import android.util.Log
 import androidx.lifecycle.liveData
+import com.zanyzephyr.sunnyweather.logic.dao.PlaceDao
 import com.zanyzephyr.sunnyweather.logic.model.Place
 import com.zanyzephyr.sunnyweather.logic.model.Weather
 import com.zanyzephyr.sunnyweather.logic.network.SunnyWeatherNetwork
@@ -66,12 +67,7 @@ object Repository {
             emit(result)
         }
 
-//    private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
-//        liveData<Result<T>>(context) {
-//            val result = try {
-//                block()
-//            } catch (e: Exception) {
-//                Result.failure<T>(e)
-//            }
-//        }
+    fun savePlace(place: Place) = PlaceDao.savePlace(place)
+    fun getSavedPlace() = PlaceDao.getSavedPlace()
+    fun isPlaceSaved() = PlaceDao.isPlaceSaved()
 }
