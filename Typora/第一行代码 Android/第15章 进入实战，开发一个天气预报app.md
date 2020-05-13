@@ -75,3 +75,52 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
 ### 15.8.1 使用Android Studio生成
 
+在 AS 中一步步操作即可（`Build`->`Generate Signed Bundle / APK`）：
+
+![image-20200513180804148](https://tva1.sinaimg.cn/large/007S8ZIlly1geqzftkh9fj30gg0hknb0.jpg)
+
+### 15.8.2 使用Gradle 生成
+
+在`~/.gradle/gradle.properties`中配置好文件路径和密码
+
+```
+KEY_PATH=/Users/zephyr/Documents/AndroidStudio/000
+ALIAS_NAME=000
+PWD=000000
+```
+
+
+
+在app的build.gradle中，配置如下：
+
+```swift
+android {
+    ...
+    signingConfigs {
+        config {
+            storeFile file(KEY_PATH)
+            storePassword PWD
+            keyAlias = ALIAS_NAME
+            keyPassword PWD
+        }
+    }
+
+    buildTypes {
+        release {
+            ...
+            signingConfig signingConfigs.config
+        }
+    }
+
+   ...
+}
+```
+
+配置好之后，用gradle工具打包即可
+
+![image-20200513183610357](https://tva1.sinaimg.cn/large/007S8ZIlly1ger090sfzdj30u00zftcr.jpg)
+
+打包后的文件默认存放在如下路径：
+
+![image-20200513183703008](https://tva1.sinaimg.cn/large/007S8ZIlly1ger09xhvjej30qk0rstb3.jpg)
+
