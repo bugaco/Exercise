@@ -70,3 +70,8 @@ override fun onCreate(savedInstanceState: Bundle?) {
 ```
 
 ### 15.8生成正是签名的apk文件
+
+开发阶段，直接运行，也能安装，是AS帮我们做了打包工作
+
+### 15.8.1 使用Android Studio生成
+
