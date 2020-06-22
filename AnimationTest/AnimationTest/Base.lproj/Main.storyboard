@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AnimationTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1L-ca-kLx">
+                                <rect key="frame" x="107" y="398" width="200" height="100"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="YDx-Hl-pJF">
+                                        <rect key="frame" x="0.0" y="0.5" width="200" height="99"/>
+                                        <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="0VK-FO-Zc4"/>
+                                    <constraint firstItem="YDx-Hl-pJF" firstAttribute="top" secondItem="d1L-ca-kLx" secondAttribute="top" id="30J-6K-Tla"/>
+                                    <constraint firstAttribute="height" constant="100" id="CrY-sK-sDs"/>
+                                    <constraint firstAttribute="bottom" secondItem="YDx-Hl-pJF" secondAttribute="bottom" id="Iiw-82-j9W"/>
+                                    <constraint firstAttribute="trailing" secondItem="YDx-Hl-pJF" secondAttribute="trailing" id="Qsc-F5-GGE"/>
+                                    <constraint firstItem="YDx-Hl-pJF" firstAttribute="leading" secondItem="d1L-ca-kLx" secondAttribute="leading" id="nT8-pQ-FOu"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="d1L-ca-kLx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0vU-nM-2Y5"/>
+                            <constraint firstItem="d1L-ca-kLx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="g5D-Oc-ecy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="blueView" destination="d1L-ca-kLx" id="ZPr-NT-uWo"/>
+                        <outlet property="x" destination="0vU-nM-2Y5" id="7Wb-d0-e3G"/>
+                        <outlet property="y" destination="g5D-Oc-ecy" id="5Mk-aG-Y2R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="pencil.circle.fill" catalog="system" width="128" height="121"/>
+    </resources>
+</document>
