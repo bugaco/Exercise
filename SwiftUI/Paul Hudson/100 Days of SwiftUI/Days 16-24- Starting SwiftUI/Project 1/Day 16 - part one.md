@@ -85,3 +85,28 @@ struct ContentView: View {
 }
 ```
 
+---
+
+## Picker、ForEach
+
+```swift
+struct ContentView: View {
+    var students = ["韩梅梅", "李雷", "露西"]
+    @State var selectionIndex = 0
+    var body: some View {
+        VStack {
+            Picker("Select your student ", selection: $selectionIndex) {
+                ForEach(0 ..< students.count) {
+                    Text(students[$0])
+                }
+                .padding()
+            }
+            Text("You choose: Student # \(students[selectionIndex])")
+                .padding()
+        }
+    }
+}
+```
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gicjxq3kf9j30m615eaej.jpg" alt="image-20200902195507875" style="zoom:50%;" />
+
