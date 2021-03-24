@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MyCollectionViewCell" customModule="UICollectionViewCell_Auto_Layout" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="191" height="244"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="191" height="244"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pxb-vg-UeJ">
+                        <rect key="frame" x="8" y="8" width="175" height="44"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="广告招租" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HiQ-dv-RVP">
+                                <rect key="frame" x="31" y="5.5" width="113.5" height="33.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" systemColor="systemYellowColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                        <constraints>
+                            <constraint firstItem="HiQ-dv-RVP" firstAttribute="centerY" secondItem="pxb-vg-UeJ" secondAttribute="centerY" id="B3G-8A-sQp"/>
+                            <constraint firstItem="HiQ-dv-RVP" firstAttribute="centerX" secondItem="pxb-vg-UeJ" secondAttribute="centerX" id="RzA-cV-kfb"/>
+                            <constraint firstAttribute="height" priority="750" constant="44" id="qoJ-Fv-tS6"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qH-Ka-mkN">
+                        <rect key="frame" x="8" y="60" width="175" height="176"/>
+                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+            <constraints>
+                <constraint firstItem="9qH-Ka-mkN" firstAttribute="top" secondItem="pxb-vg-UeJ" secondAttribute="bottom" constant="8" id="51E-tY-uQT"/>
+                <constraint firstAttribute="trailing" secondItem="pxb-vg-UeJ" secondAttribute="trailing" constant="8" id="59Y-CK-PC7"/>
+                <constraint firstItem="9qH-Ka-mkN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="8pv-8f-f39"/>
+                <constraint firstAttribute="trailing" secondItem="9qH-Ka-mkN" secondAttribute="trailing" constant="8" id="Fd4-Uk-GzE"/>
+                <constraint firstItem="pxb-vg-UeJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="I3o-xp-sbt"/>
+                <constraint firstItem="pxb-vg-UeJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="YHX-M4-TZ0"/>
+                <constraint firstAttribute="bottom" secondItem="9qH-Ka-mkN" secondAttribute="bottom" constant="8" id="hN8-UA-oBD"/>
+            </constraints>
+            <size key="customSize" width="191" height="244"/>
+            <connections>
+                <outlet property="label" destination="9qH-Ka-mkN" id="csI-tx-fcs"/>
+            </connections>
+            <point key="canvasLocation" x="-55.797101449275367" y="-49.553571428571423"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

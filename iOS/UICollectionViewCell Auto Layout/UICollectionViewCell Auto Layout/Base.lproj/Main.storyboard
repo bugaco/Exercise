@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="UICollectionViewCell_Auto_Layout" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dhs-sT-He8">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="refresh" id="OFC-aC-WbG">
+                                        <connections>
+                                            <action selector="refresh:" destination="BYZ-38-t0r" id="qhh-c9-nJ2"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Add Section 1 Item" id="TJZ-n1-nZW">
+                                        <color key="tintColor" systemColor="systemTealColor"/>
+                                        <connections>
+                                            <action selector="add1:" destination="BYZ-38-t0r" id="vPc-jM-HST"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Add Section 2 Item" id="q3f-aa-zYo">
+                                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                                        <connections>
+                                            <action selector="add2:" destination="BYZ-38-t0r" id="VoQ-fb-YoI"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="s3X-Zs-NT6">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="TuP-IO-vo3">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="s3X-Zs-NT6" secondAttribute="trailing" id="3Lh-aR-0XD"/>
+                            <constraint firstItem="Dhs-sT-He8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DV6-Rd-zRX"/>
+                            <constraint firstItem="Dhs-sT-He8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="lpf-XD-OBN"/>
+                            <constraint firstItem="Dhs-sT-He8" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="oCA-bT-zKA"/>
+                            <constraint firstItem="s3X-Zs-NT6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="okO-KP-awe"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="s3X-Zs-NT6" secondAttribute="bottom" id="pAN-4k-oFD"/>
+                            <constraint firstItem="s3X-Zs-NT6" firstAttribute="top" secondItem="Dhs-sT-He8" secondAttribute="bottom" id="vds-wq-F1u"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="s3X-Zs-NT6" id="Rht-6d-tYo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-241" y="106"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
