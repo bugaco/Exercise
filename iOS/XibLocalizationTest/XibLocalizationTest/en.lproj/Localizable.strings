@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  XibLocalizationTest
+
+  Created by BugaCo on 9/25/21.
+  
+*/
+
+"title" = "Title";
+"confirm" = "confirm";
+"content" = "content";

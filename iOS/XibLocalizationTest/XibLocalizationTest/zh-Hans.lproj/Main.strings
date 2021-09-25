@@ -1,0 +1,9 @@
+
+/* Class = "UIButton"; configuration.title = "Confirm"; ObjectID = "2bQ-tR-y3G"; */
+"2bQ-tR-y3G.configuration.title" = "确认";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "2bQ-tR-y3G"; */
+"2bQ-tR-y3G.normalTitle" = "按钮";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "iO7-UZ-yPq"; */
+"iO7-UZ-yPq.text" = "标题";
