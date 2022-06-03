@@ -30,6 +30,7 @@
 		A7304FAE26FF2F6C002AA9C5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		A7304FAF26FF2F6D002AA9C5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		A7304FB026FF2F6E002AA9C5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		A7D0BF3E26FF49BC00CA812D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hans"; path = "zh-Hans.lproj/Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +190,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A7304FAD26FF2C7B002AA9C5 /* Base */,
+				A7D0BF3E26FF49BC00CA812D /* zh-Hans */,
 			);
 			name = Info.plist;
 			sourceTree = "<group>";
